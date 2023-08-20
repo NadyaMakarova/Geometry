@@ -1,0 +1,94 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		x:Class="GeometryMakarova.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+		Title="Вычисление площадей"
+		Background="White"
+		MinWidth="1150">
+	<Window.Resources>
+		<ResourceDictionary>
+			<DataTemplate x:Key="triangle">
+				<StackPanel Orientation="Vertical" Spacing="20">
+					<TextBlock FontSize="18" Text="Вычисление площади треугольника" HorizontalAlignment="Center"></TextBlock>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Сторона А"></TextBlock>
+						<NumericUpDown Value="{Binding TriangleA}"></NumericUpDown>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Сторона B"></TextBlock>
+						<NumericUpDown Value="{Binding B}"></NumericUpDown>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Сторона C"></TextBlock>
+						<NumericUpDown Value="{Binding C}"></NumericUpDown>
+					</StackPanel>
+					<Button HorizontalAlignment="Center" Content="Вычислить" Command="{Binding ReturnTriangleSCommand}"></Button>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Площадь"></TextBlock>
+						<TextBox IsEnabled="False" Text="{Binding TriangleS}"></TextBox>
+					</StackPanel>
+				</StackPanel>
+			</DataTemplate>
+			<DataTemplate x:Key="circle">
+				<StackPanel Orientation="Vertical" Spacing="20">
+					<TextBlock FontSize="18" Text="Вычисление площади круга" HorizontalAlignment="Center"></TextBlock>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Радиус"></TextBlock>
+						<NumericUpDown Value="{Binding R}"></NumericUpDown>
+					</StackPanel>
+					<Button HorizontalAlignment="Center" Content="Вычислить" Command="{Binding ReturnCircleSCommand}"></Button>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Площадь"></TextBlock>
+						<TextBox IsEnabled="False" Text="{Binding CircleS}"></TextBox>
+					</StackPanel>
+				</StackPanel>
+			</DataTemplate>
+			<DataTemplate x:Key="quad">
+				<StackPanel Orientation="Vertical" Spacing="20">
+					<TextBlock FontSize="18" Text="Вычисление площади четырехугольника" HorizontalAlignment="Center"></TextBlock>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Сторона А"></TextBlock>
+						<NumericUpDown Value="{Binding QuadA}"></NumericUpDown>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Высота"></TextBlock>
+						<NumericUpDown Value="{Binding H}"></NumericUpDown>
+					</StackPanel>
+					<Button HorizontalAlignment="Center" Content="Вычислить" Command="{Binding ReturnQuadSCommand}"></Button>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Площадь"></TextBlock>
+						<TextBox IsEnabled="False" Text="{Binding QuadS}"></TextBox>
+					</StackPanel>
+				</StackPanel>
+			</DataTemplate>
+		</ResourceDictionary>
+	</Window.Resources>
+	<Grid>
+		<TabControl TabStripPlacement="Left" Background="WhiteSmoke">
+			<TabItem MinWidth="150">
+				<TabItem.Header>
+					<TextBlock HorizontalAlignment="Center" FontSize="16" Text="Треугольник"></TextBlock>
+				</TabItem.Header>
+				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource ResourceKey=triangle}">
+				</ContentControl>
+			</TabItem>
+			<TabItem MinWidth="150">
+				<TabItem.Header>
+					<TextBlock HorizontalAlignment="Center" FontSize="16" Text="Круг"></TextBlock>
+				</TabItem.Header>
+				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource ResourceKey=circle}">
+				</ContentControl>
+			</TabItem>
+			<TabItem MinWidth="150">
+				<TabItem.Header>
+					<TextBlock HorizontalAlignment="Center" FontSize="16" Text="Четырехугольник"></TextBlock>
+				</TabItem.Header>
+				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource ResourceKey=quad}">
+				</ContentControl>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
