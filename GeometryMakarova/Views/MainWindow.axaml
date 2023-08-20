@@ -30,6 +30,11 @@
 						<TextBlock VerticalAlignment="Center" Text="Площадь"></TextBlock>
 						<TextBox IsEnabled="False" Text="{Binding TriangleS}"></TextBox>
 					</StackPanel>
+					<Button HorizontalAlignment="Center" Content="Проверка" Command="{Binding CheckTriangleRightCommand}"></Button>
+					<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+						<TextBlock VerticalAlignment="Center" Text="Прямоугольный треугольник?"></TextBlock>
+						<CheckBox IsChecked="{Binding IsTriangleRight}" IsEnabled="False"></CheckBox>
+					</StackPanel>
 				</StackPanel>
 			</DataTemplate>
 			<DataTemplate x:Key="circle">

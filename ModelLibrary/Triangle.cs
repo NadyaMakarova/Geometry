@@ -28,6 +28,20 @@ namespace ModelLibrary
             return null;
         }
 
+        public bool IsItRightTriangle()
+        {
+            if (Parameters != null && Parameters?.A != null && Parameters?.B != null && Parameters?.C != null)
+            {
+                if (Parameters?.A > Parameters?.B && Parameters?.A > Parameters?.C)
+                    return Math.Pow(Parameters.A.Value, 2) == Math.Pow(Parameters.B.Value, 2) + Math.Pow(Parameters.C.Value, 2);
+                if (Parameters?.B > Parameters?.A && Parameters?.B > Parameters?.C)
+                    return Math.Pow(Parameters.B.Value, 2) == Math.Pow(Parameters.A.Value, 2) + Math.Pow(Parameters.C.Value, 2);
+                if (Parameters?.C > Parameters?.A && Parameters?.C > Parameters?.B)
+                    return Math.Pow(Parameters.C.Value, 2) == Math.Pow(Parameters.A.Value, 2) + Math.Pow(Parameters.B.Value, 2);
+            }
+            return false;
+        }
+
         #endregion 
     }
 }

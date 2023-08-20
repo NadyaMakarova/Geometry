@@ -31,11 +31,15 @@ namespace GeometryMakarova.ViewModels
 
         public double? H { get; set; }
 
+        public bool IsTriangleRight { get; set; }
+
         public ICommand ReturnTriangleSCommand { get; }
 
         public ICommand ReturnCircleSCommand { get; }
 
         public ICommand ReturnQuadSCommand { get; }
+
+        public ICommand CheckTriangleRightCommand { get; }
 
         #endregion
 
@@ -46,6 +50,7 @@ namespace GeometryMakarova.ViewModels
             ReturnTriangleSCommand = ReactiveCommand.CreateFromTask(ReturnTriangleS);
             ReturnCircleSCommand = ReactiveCommand.CreateFromTask(ReturnCircleS);
             ReturnQuadSCommand = ReactiveCommand.CreateFromTask(ReturnQuadS);
+            CheckTriangleRightCommand = ReactiveCommand.CreateFromTask(CheckRightTriangle);
         }
 
         #endregion
@@ -88,6 +93,20 @@ namespace GeometryMakarova.ViewModels
             var figure = new Figure(parameters);
             QuadS = figure.ReturnS();
             this.RaisePropertyChanged(nameof(QuadS));
+            return null;
+        }
+
+        public async Task<bool?> CheckRightTriangle()
+        {
+            var parameters = new Parameters()
+            {
+                A = TriangleA,
+                B = B,
+                C = C
+            };
+            var triangle = new Triangle(parameters);
+            IsTriangleRight = triangle.IsItRightTriangle();
+            this.RaisePropertyChanged(nameof(IsTriangleRight));
             return null;
         }
 
